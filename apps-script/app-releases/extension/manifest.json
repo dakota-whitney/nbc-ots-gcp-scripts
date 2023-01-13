@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "OTS App Release Autofiller",
+    "version": "0.0.0.1",
+    "description": "Extension to automate autofilling OTS app store metadata",
+    "permissions": ["tabs","notifications","activeTab","scripting","commands","identity","identity.email"],
+    "action": {
+      "default_title": "OTS App Release Autofiller",
+      "default_icon": {
+        "32": "/img/nbc_grey-32.png"
+      }
+    },
+    "host_permissions": [
+      "https://script.google.com/macros/s/*",
+      "https://appstoreconnect.apple.com/*/apps/*",
+      "https://play.google.com/console/u/0/developers/5370792382133247542/app/*",
+      "https://developer.roku.com/developer-channels/channels/"
+    ],
+    "background":{
+        "service_worker": "background.js",
+        "type": "module"
+    }
+  }

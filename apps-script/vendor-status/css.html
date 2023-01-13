@@ -1,0 +1,130 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<style>
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  text-align: center;
+  font-family: Futura, "Trebuchet MS";
+}
+a{
+  text-decoration:none;
+  color: inherit;
+}
+nav{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:space-around;
+  align-items: center;
+  width:100%;
+  height:100px;
+  background-color: #3c0997;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+#title{
+  font-family: Futura, "Trebuchet MS";
+  font-size:35px;
+  font-weight: bolder;
+}
+#nav-links{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  height:100%;
+}
+.nav-link{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  width:150px;
+  height:100%;
+  font-size:25px;
+}
+.nav-link:hover{
+  color: #3c0997;
+  background-color: white;
+}
+main{
+  text-align:center;
+  padding-bottom:10px;
+  background-color: black;
+}
+#timestamp, #timer{
+  font-size: 15px;
+  color: #3c0997;
+  font-family: Futura, "Trebuchet MS";
+  font-weight: bold;
+}
+#status-display{
+  background-color: white;
+  height: 100%;
+}
+#status-display > table{
+  width: 100%;
+  text-align: center;
+  color: #3c0997;
+  border-spacing: 0px;
+}
+thead{
+  position: sticky;
+  top: 0;
+  left: 0;
+  font-size: 25px;
+  font-family: 'Montserrat', sans-serif;
+}
+thead tr{
+  text-align: center;
+  font-size: 17.5px;
+  background-color: white;
+}
+th{
+  font-size: 12.5px;
+  padding: 10px;
+}
+tr{
+  text-align: left;
+  background-color: black;
+}
+td{
+  word-wrap: break-word;
+}
+.highlighted{
+  background-color: linen;
+}
+.resolved-row{
+  color: ForestGreen;
+}
+.resolved-row:hover{
+  background-color: ForestGreen;
+  color: white;
+}
+.warning-row{
+  color: Orange;
+}
+.warning-row:hover{
+  background-color: Orange;
+  color: white;
+}
+.alert-row{
+  color: Crimson;
+}
+.alert-row:hover{
+  background-color: Crimson;
+  color: white;
+}
+.maintenance-row{
+  color: DodgerBlue;
+}
+.maintenance-row:hover{
+  background-color: DodgerBlue;
+  color: white;
+}
+.loading{
+  opacity: 50%;
+  cursor: wait;
+}
+</style>

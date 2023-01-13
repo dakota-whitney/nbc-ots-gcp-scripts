@@ -1,0 +1,70 @@
+<script>
+(() => {
+  const updateDisplay = (incidents, timeLeft) => {
+    console.log(incidents);
+
+    timeLeft.setSeconds(0);
+    timeLeft.setMinutes(5);
+
+    timerId = setInterval(tick, 1000, timeLeft);
+
+    timer.innerText = timeLeft.toLocaleTimeString('it-IT').substring(3);
+    document.getElementById("timestamp").innerText = new Date().toLocaleString({ hour12: true });
+
+    [...display.children].slice(1).forEach(row => row.remove());
+
+    toggleLoading(false);
+
+    return incidents.forEach(({platform, name, created_at, message, status, link}, i) => {
+      const row = document.createElement("tr");
+
+      if(status === 1) status = "alert";
+      else if(status === 2) status = "warning";
+      else if(status === 3) status = "maintenance";
+      else status = "resolved";
+
+      row.classList.add(status + "-row");
+
+      row.innerHTML = `<td>${platform}</td><td>${created_at}</td><td class="left">${name}</td><td>${status.toUpperCase()}</td>`;
+
+      row.querySelectorAll("td").forEach(td => td.innerHTML = `<a href="${link}" target="_blank">${td.innerText}</a>`);
+
+      return display.appendChild(row)
+    });
+  };
+
+  const toggleLoading = isLoading => {
+    if(!isLoading) display.parentElement.removeAttribute("style");
+    [...display.children].slice(1).forEach(row => row.classList.toggle("loading"))
+    document.querySelectorAll("nav > div > a").forEach(link => link.disabled = isLoading);
+  };
+
+  const display = document.querySelector("#status-display > table");
+  display.parentElement.style.height = window.innerHeight + "px";
+
+  const timer = document.getElementById("timer");
+  const timeLeft = new Date( new Date().toLocaleDateString() + " 12:05:00 AM" );
+  const reqFeeds = timeLeft => google.script.run.withSuccessHandler(updateDisplay).withUserObject(timeLeft).fetchFeeds();
+
+  toggleLoading(true);
+  reqFeeds(timeLeft);
+  let timerId = 0;
+
+  const tick = timeLeft => {
+    const seconds = timeLeft.getSeconds();
+    const minutes = timeLeft.getMinutes();
+
+    timeLeft.setSeconds(seconds - 1);
+
+    if(minutes <= 0 && seconds <= 0){
+      toggleLoading(true);
+      clearInterval(timerId)
+      return reqFeeds(timeLeft);
+    };
+    
+    if(seconds <= 0) timeLeft.setMinutes(minutes - 1);
+
+    return timer.innerText = timeLeft.toLocaleTimeString('it-IT').substring(3);
+  };
+})();
+</script>

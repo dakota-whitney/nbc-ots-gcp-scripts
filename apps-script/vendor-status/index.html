@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('css'); ?>
+  </head>
+  <body>
+    <nav>
+      <h1 id="title">Ops Status Dashboard</h1>
+      <div id="nav-links">
+        <a class="nav-link" href="https://theplatform.service-now.com/support_portal/" target="_blank">CVP</a>
+        <a class="nav-link" href="https://status.atlassian.com/" target="_blank">Jira</a>
+        <a class="nav-link" href="https://status.slack.com/" target="_blank">Slack</a>
+        <a class="nav-link" href="https://downdetector.com/" target="_blank">Down Detector</a>
+      </div>
+    </nav>
+    <main>
+      <section id="status-display">
+        <table>
+          <thead>
+            <tr><th colspan="2">Updated as of: <span id="timestamp"></span></th><th colspan="2">Next refresh in: <span id="timer"></span></th></tr>
+          </thead>
+        </table>
+    </section>
+  </main>
+  <?!= include('js'); ?>
+  </body>
+</html>
